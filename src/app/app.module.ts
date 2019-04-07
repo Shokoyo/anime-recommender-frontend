@@ -7,14 +7,17 @@ import { AppComponent } from './app.component';
 import { RecommendationsSearchComponent } from './recommendations-search/recommendations-search.component';
 import { AnimeDetailPageComponent } from './anime-detail-page/anime-detail-page.component';
 import { RecommendationsListComponent } from './recommendations-list/recommendations-list.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {RecommendationsService} from './recommendations-service/recommendations.service';
+import {ResponsiveColumnsDirective} from './recommendations-list/responsive-columns.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecommendationsSearchComponent,
     AnimeDetailPageComponent,
-    RecommendationsListComponent
+    RecommendationsListComponent,
+    ResponsiveColumnsDirective
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [RecommendationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
