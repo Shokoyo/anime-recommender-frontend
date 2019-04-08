@@ -1,0 +1,41 @@
+stages:
+  - build
+  - package
+  - deploy
+
+variables:
+  DOCKER_IMAGE_TAGGED: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+  DOCKER_IMAGE_LATEST: $CI_REGISTRY_IMAGE:latest
+  APP_URL: dieser1memesprech.de
+
+build_prod:
+  stage: build
+  image: node:alpine
+  script: npm install && npm run build
+  artifacts:
+    paths:
+      - dist/*
+
+docker_push:
+  stage: package
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $DOCKER_IMAGE_TAGGED .
+    - docker push $DOCKER_IMAGE_TAGGED
+
+deploy_prod:
+  stage: deploy
+  variables:
+    APP_DEPLOY_URL: $APP_URL
+  before_script:
+    - docker info
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker stop $CI_PROJECT_NAME || true
+    - docker rm $CI_PROJECT_NAME || true
+    - docker run -p 8085:80 -v /var/run/docker.sock:/var/run/docker.sock --name $CI_PROJECT_NAME -d $DOCKER_IMAGE_TAGGED
+  environment:
+    name: production
+    url: http://$APP_URL:8085
+  only:
+    - master
