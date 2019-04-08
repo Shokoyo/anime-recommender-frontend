@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class RecommendationsService {
-  private static readonly API_URL: string = 'http://' + window.location.hostname + ':5000/api/v1.0/recommend/';
+  private static readonly API_URL: string = 'http://' + (window.location.hostname === 'localhost' ? 'localhost' : 'waifu-wonderland.moe') + ':5000/api/v1.0/recommend/';
   recommendations: Anime[] = [];
   userName: string;
   source = 1;
