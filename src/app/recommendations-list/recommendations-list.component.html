@@ -1,23 +1,16 @@
 <section class="mat-typography main-container">
   <h1>Your recommendations</h1>
-  <mat-grid-list [appResponsiveColumns]="{xs: 1, sm: 2, md: 4, lg: 6, xl: 12}" cols="6">
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
+  <mat-grid-list [appResponsiveColumns]="{xs: 1, sm: 2, md: 4, lg: 6, xl: 8}" cols="6" rowHeight="45:62">
+    <mat-grid-tile *ngIf="this.recommendationsService.recommendations.length === 0">
+      <img src="../../assets/img/loading.gif">
+    </mat-grid-tile>
     <mat-grid-tile *ngFor="let recommendation of this.recommendationsService.recommendations">
-      <mat-card>
-
-      </mat-card>
+      <app-recommendations-list-entry
+        [title]="recommendation.title.romaji"
+        [coverImage]="recommendation.coverImage.large"
+        [id]="recommendation.id"
+      >
+      </app-recommendations-list-entry>
     </mat-grid-tile>
   </mat-grid-list>
 </section>

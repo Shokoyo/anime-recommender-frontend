@@ -8,8 +8,13 @@ import { RecommendationsSearchComponent } from './recommendations-search/recomme
 import { AnimeDetailPageComponent } from './anime-detail-page/anime-detail-page.component';
 import { RecommendationsListComponent } from './recommendations-list/recommendations-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {RecommendationsService} from './recommendations-service/recommendations.service';
-import {ResponsiveColumnsDirective} from './recommendations-list/responsive-columns.directive';
+import { RecommendationsService } from './recommendations-service/recommendations.service';
+import { ResponsiveColumnsDirective } from './recommendations-list/responsive-columns.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { RecommendationsListEntryComponent } from './recommendations-list/recommendations-list-entry/recommendations-list-entry.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +22,18 @@ import {ResponsiveColumnsDirective} from './recommendations-list/responsive-colu
     RecommendationsSearchComponent,
     AnimeDetailPageComponent,
     RecommendationsListComponent,
-    ResponsiveColumnsDirective
+    ResponsiveColumnsDirective,
+    RecommendationsListEntryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [RecommendationsService],
   bootstrap: [AppComponent]

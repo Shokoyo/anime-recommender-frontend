@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecommendationsService} from '../recommendations-service/recommendations.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-recommendations-list',
@@ -8,9 +9,12 @@ import { RecommendationsService} from '../recommendations-service/recommendation
 })
 export class RecommendationsListComponent implements OnInit {
 
-  constructor(private recommendationsService: RecommendationsService) {  }
+  constructor(private recommendationsService: RecommendationsService, private router: Router) {  }
 
   ngOnInit() {
+    if (this.recommendationsService.recommendations.length === 0 && this.recommendationsService.userName === undefined) {
+      this.router.navigateByUrl('/');
+    }
   }
 
 }

@@ -20,5 +20,6 @@ export class Anime {
     english: string;
     native: string;
     romaji: string;
-  }
+  };
+  similarity: number;
 }

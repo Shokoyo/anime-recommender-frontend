@@ -16,6 +16,8 @@
     "@angular/common": "~7.0.0",
     "@angular/compiler": "~7.0.0",
     "@angular/core": "~7.0.0",
+    "@angular/fire": "^5.1.2",
+    "@angular/flex-layout": "latest",
     "@angular/forms": "~7.0.0",
     "@angular/http": "~7.0.0",
     "@angular/material": "7.3.6",
@@ -23,9 +25,9 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "core-js": "^2.5.4",
+    "firebase": "^5.9.3",
     "rxjs": "~6.3.3",
-    "zone.js": "~0.8.26",
-    "@angular/flex-layout": "latest"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.7",
